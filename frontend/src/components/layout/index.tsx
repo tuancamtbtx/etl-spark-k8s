@@ -1,4 +1,4 @@
-// 'use client'
+'use client'
 import Head from 'next/head'
 import { LayoutWrapper, ContentWrapper, LogoWrapper } from '@/components/wrapper'
 import styled from 'styled-components'
@@ -6,27 +6,22 @@ import Link from 'next/link'
 
 
 import {
-    CoffeeOutlined,
+    ApiOutlined,
     HomeOutlined,
     MenuFoldOutlined,
     MenuUnfoldOutlined,
-    UserOutlined,
+    SettingOutlined,
+    ApartmentOutlined,
+    SendOutlined
 } from '@ant-design/icons';
-import { Avatar, Col, Layout, Menu } from 'antd';
-import React, { memo, useState,ReactNode ,useEffect} from 'react';
+import {Layout, Menu } from 'antd';
+import React, { memo, useState, ReactNode} from 'react';
 import UserDropDown from './user-dropdown'
 
 
-import type { MenuProps } from 'antd';
 
 const { Header, Sider, Content,Footer } = Layout;
-const LogoName = styled.span`
-	margin: 12px;
-	font-size: 21px;
-	line-height: 30px;
-	font-weight: 700;
-	color: #2ecc71;
-`
+
 type IProps = {
 	title?: string,
 	children?: ReactNode,
@@ -41,9 +36,9 @@ const App = memo(({ title, activeMenuKey, children}:IProps) => {
     const handleMenuClick = (e: any) => {
         setSelectedKey(e.key);
     };
-    useEffect(() => {
+    // useEffect(() => {
 
-	}, [])
+	// }, [])
     return (
         <LayoutWrapper>
             <Head>
@@ -69,10 +64,10 @@ const App = memo(({ title, activeMenuKey, children}:IProps) => {
                   onClick={() => setCollapsed(true)} />}
             </div>
             <LogoWrapper>
-              <img src='https://upload.wikimedia.org/wikipedia/en/thumb/1/12/Grab_%28application%29_logo.svg/2560px-Grab_%28application%29_logo.svg.png' />
+              <img src='/next.jpg' />
             </LogoWrapper>
           </div>
-          <UserDropDown username="Tuấn Cám" avatar="https://lh3.googleusercontent.com/ogw/ADGmqu_t6ocQYu86ewBqgpoKp35oKKv8l98N6RpyzL_L=s32-c-mo" />
+          <UserDropDown username="Tuấn Cám" avatar="https://mystickermania.com/cdn/stickers/cute/cute-tiger-512x512.png" />
         </Header>
             <Layout style={{ marginTop: '1px' }}>
                 <Sider theme='light' width={200} trigger={null} collapsible collapsed={collapsed}>
@@ -86,23 +81,28 @@ const App = memo(({ title, activeMenuKey, children}:IProps) => {
                     items={[
                         {
                             key: 'dashboard',
-                            icon: <CoffeeOutlined />,
+                            icon: <HomeOutlined />,
                             label: <Link href="/">Dashboard</Link>,
                         },
                         {
-                            key: 'foods',
-                            icon: <HomeOutlined />,
-                            label: <Link href="/foods">Foods</Link>,
+                            key: 'connections',
+                            icon: <ApiOutlined />,
+                            label: <Link href="/connections">Connections</Link>,
                         },
                         {
-                            key: 'store',
-                            icon: <HomeOutlined />,
-                            label: <Link href="/stores">Stores</Link>,
+                            key: 'sources',
+                            icon: <ApartmentOutlined />,
+                            label: <Link href="/sources">Sources</Link>,
                         },
                         {
-                            key: 'shippers',
-                            icon: <UserOutlined />,
-                            label: <Link href="/shippers">Shippers</Link>,
+                            key: 'destinations',
+                            icon: <SendOutlined />,
+                            label: <Link href="/destinations">Destinations</Link>,
+                        },
+                        {
+                            key: 'settings',
+                            icon: <SettingOutlined />,
+                            label: <Link href="/settings">Settings</Link>,
                         },
                     ]}
                 />

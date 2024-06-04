@@ -1,8 +1,9 @@
 // export const name: string = 'user-dropdown';
 import React, { ReactNode } from 'react'
 import styled from 'styled-components'
-import Image from 'next/image'
-import { Menu, Dropdown } from 'antd'
+import { Menu, Dropdown ,Avatar} from 'antd'
+import { SmileOutlined } from '@ant-design/icons';
+import type { MenuProps } from 'antd';
 import { LogoutOutlined, DownOutlined, EditOutlined } from '@ant-design/icons'
 const Wrapper = styled.a`
   display: flex;
@@ -40,11 +41,32 @@ const menu: any = (
         </Menu.Item>
     </Menu>
 )
+const items: MenuProps['items'] = [
+    {
+      key: '1',
+      label: (
+        <a target="_blank" rel="noopener noreferrer" href="https://www.antgroup.com">
+          Đổi mật khẩu
+        </a>
+      ),
+      icon: <EditOutlined />,
+
+    },
+    {
+      key: '2',
+      label: (
+        <a target="_blank" rel="noopener noreferrer" href="https://www.aliyun.com">
+          Đăng Xuất
+        </a>
+      ),
+      icon: <SmileOutlined />,
+    },
+  ];
 const UserDropDown: React.FC<IUserProps> = ({ username, avatar }: IUserProps) => {
     return (
-        <Dropdown overlay={menu}>
+        <Dropdown menu={{items}}>
             <Wrapper className='ant-dropdown-link' href='#'>
-                <Image src={avatar} alt={username as string} />
+                <Avatar src={avatar}/>
                 <span className='fullname'>{username}</span>
                 <DownOutlined />
             </Wrapper>

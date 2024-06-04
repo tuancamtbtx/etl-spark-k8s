@@ -35,8 +35,8 @@ export const LayoutWrapper = styled.div`
     border-right: 0px;
   }
   .ant-menu:not(.ant-menu-horizontal) .ant-menu-item-selected {
-    background-color: #f1ecf2ab;
-    color: #2ecc71;
+    background-color: #2ecc71;
+    color: white;
   }
   .ant-layout-sider {
   }
@@ -72,8 +72,8 @@ export const LayoutWrapper = styled.div`
 `
 export const LogoWrapper = styled.div`
     img {
-      width: 72px;
-      height: 30px;
+      width: 40px;
+      height: 40px;
      margin: 16px 28px 16px 0;
      float: left;
     }
