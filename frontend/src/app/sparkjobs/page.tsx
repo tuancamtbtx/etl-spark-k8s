@@ -32,28 +32,6 @@ interface DataType {
       key: 'name',
     },
     {
-        title: 'source',
-        dataIndex: ['source', 'srcUrl'],
-        key: 'source',
-        render: (_,source) => (
-            <div>
-            <Avatar src={source.srcUrl}/>
-            <a>{source.source}</a>
-            </div>
-        )
-    },
-    {
-        title: 'Destination',
-        dataIndex: ['destination', 'destUrl'],
-        key: 'destination',
-        render: (_,source) => (
-            <div>
-            <Avatar src={source.destUrl}/>
-            <a>{source.destination}</a>
-            </div>
-        )
-    },
-    {
       title: 'Tags',
       key: 'tags',
       dataIndex: 'tags',
@@ -70,7 +48,6 @@ interface DataType {
         </>
       ),
     },  
-   
       {
         title: 'FREQUENCY',
         dataIndex: 'frequency',
@@ -78,25 +55,6 @@ interface DataType {
         render: frequency => (
             <a>{frequency}</a>
         )
-      },
-      {
-        title: 'EXECUTOR',
-        dataIndex: 'executor',
-        key: 'executor',
-        render: executor => {
-            if(executor === 'Kubernetes') {
-                return (
-                    <Tag color="#108ee9" key={executor}>
-                        {executor.toUpperCase()}
-                    </Tag>
-                )
-            }
-            return (
-                <Tag color='#87d068' key={executor}>
-                    {executor.toUpperCase()}
-                </Tag>
-            ) 
-      }
       },
       {
         title: 'ENABLED',
@@ -110,10 +68,14 @@ interface DataType {
       title: 'Action',
       key: 'action',
       render: (_, record) => (
-        <Space size="middle">
+        <Space size="small">
+          <Button type="text" >Yaml</Button>
+          <Divider type="vertical"/>
+          <Button type="text">Backfill</Button>
+          <Divider type="vertical"/>
+          <Button type="text" >Log</Button>
+          <Divider type="vertical"/>
           <Button type="text" danger>Delete</Button>
-          <Divider/>
-          <Button type="text">Log</Button>
         </Space>
       ),
     },
@@ -162,8 +124,8 @@ interface DataType {
 
 export default async function Home() {
   return (
-    <AppLayout activeMenuKey='connections'>
-        <Card title="Connections" extra={<Button type="primary">Create</Button>}>
+    <AppLayout activeMenuKey='sparkjobs'>
+        <Card title="Spark Jobs" extra={<Button type="primary">Create</Button>}>
         <Table columns={columns} dataSource={data} />
         </Card>
     </AppLayout>
