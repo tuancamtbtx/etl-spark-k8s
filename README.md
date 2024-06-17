@@ -2,5 +2,5 @@
 
 ## UI
 <div align="center">
-    <img align="center" src="./docs/airtrust.png" alt="drawing" width="1000"/>
+    <img align="center" src="./assets/airtrust.png" alt="drawing" width="1000"/>
 </div>

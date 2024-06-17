@@ -35,14 +35,15 @@ export const LayoutWrapper = styled.div`
     border-right: 0px;
   }
   .ant-menu:not(.ant-menu-horizontal) .ant-menu-item-selected {
-    background-color: #2c3e50;
-    color: white;
+    background-color: #2ed573;
+    color: #ffffff;
+    font-weight: 600;
   }
   .ant-layout-sider {
   }
   .ant-menu-item-group-title  {
     color: #000;
-    font-weight: 700;
+    font-weight: 400;
     font-size: 16px;
     padding-top: 24px!important;
   }
@@ -59,11 +60,11 @@ export const LayoutWrapper = styled.div`
     }
   }
   .ant-menu-item {
-    font-weight: 700;
+    font-weight: 400;
   }
   .anticon {
-    color: #2c3e50;
-    font-size: 16px;
+    color: #2f3542;
+    font-size: 14px;
   }
   .fullname {
     color: #000;
@@ -78,10 +79,17 @@ export const LayoutWrapper = styled.div`
 `
 export const LogoWrapper = styled.div`
     img {
-      width: 60px;
+      width: 120px;
       height: 40px;
-     margin: 16px 28px 16px 0;
-     float: left;
+      margin: 16px 28px 16px 0;
+      float: left;
+    }
+    span {
+      // margin: 16px 28px 16px 0;
+      font-size: 18px;
+      font-weight: 700;
+      color: #000;
+      float: left;
     }
   
 `

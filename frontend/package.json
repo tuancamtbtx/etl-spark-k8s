@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@ant-design/charts": "^2.1.1",
     "@ant-design/icons": "^5.3.7",
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.5",
@@ -16,9 +17,11 @@
     "@mui/material": "^5.15.19",
     "@mui/x-charts": "^7.6.1",
     "antd": "^5.17.3",
+    "frappe-charts": "^1.6.2",
     "next": "14.2.3",
     "react": "^18",
     "react-dom": "^18",
+    "react-frappe-charts": "^4.1.0",
     "recharts": "^2.12.7",
     "styled-components": "^6.1.11"
   },

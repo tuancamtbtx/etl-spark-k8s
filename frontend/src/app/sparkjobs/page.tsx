@@ -5,7 +5,9 @@ import AppLayout from '@/components/layout';
 import { Space, Table, Tag,Button ,Switch,Avatar, Divider} from 'antd';
 import type { TableProps } from 'antd';
 import { Card } from 'antd'
-
+import Backfill from '@/containers/sparkjobs/backfill'
+import YamlFile from '@/containers/sparkjobs/yaml'
+import RemoveSparkJob from '@/containers/sparkjobs/delelte'
 interface DataType {
     key: string;
     name: string;
@@ -16,7 +18,6 @@ interface DataType {
     status: string;
     executor: string;
     frequency: string;
-    tags: string[];
   }
   
   const columns: TableProps<DataType>['columns'] = [
@@ -31,23 +32,6 @@ interface DataType {
       dataIndex: 'name',
       key: 'name',
     },
-    {
-      title: 'Tags',
-      key: 'tags',
-      dataIndex: 'tags',
-      render: (_, { tags }) => (
-        <>
-          {tags.map((tag) => {
-            let color = tag.length > 3 ? '#87d068' : '#108ee9';
-            return (
-              <Tag color={color} key={tag}>
-                {tag.toUpperCase()}
-              </Tag>
-            );
-          })}
-        </>
-      ),
-    },  
       {
         title: 'FREQUENCY',
         dataIndex: 'frequency',
@@ -69,13 +53,11 @@ interface DataType {
       key: 'action',
       render: (_, record) => (
         <Space size="small">
-          <Button type="text" >Yaml</Button>
+          <YamlFile/>
           <Divider type="vertical"/>
-          <Button type="text">Backfill</Button>
+          <Backfill></Backfill>
           <Divider type="vertical"/>
-          <Button type="text" >Log</Button>
-          <Divider type="vertical"/>
-          <Button type="text" danger>Delete</Button>
+          <RemoveSparkJob />
         </Space>
       ),
     },
@@ -85,7 +67,7 @@ interface DataType {
   const data: DataType[] = [
     {
       key: '1',
-      name: 'Sync Product Data',
+      name: 'Clean Data From Postgres',
       source: 'Postgres',
       executor: 'Kubernetes',
       srcUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Postgresql_elephant.svg/1200px-Postgresql_elephant.svg.png',
@@ -93,11 +75,10 @@ interface DataType {
       destUrl: "https://assets-global.website-files.com/625540b970bc1b4035617258/626a7bbfb11ca86126daf99b_5fc5067732c4f5a49d4bdf34_1200px-Cloud-Pub-Sub-Logo.jpeg",
       status: 'Runing',
       frequency: 'Stream',
-      tags: ['prod', 'AGI'],
     },
     {
       key: '2',
-      name: 'Sync Product AGI Data',
+      name: 'Clean Data From Bigquery',
       source: 'Bigquery',
       executor: 'Cloud Run',
       srcUrl: "https://assets-global.website-files.com/5f8b0a1abe69652278dad51c/60ad30603ce79d2498f80739_google%20bigquery%20logo.png",
@@ -105,12 +86,10 @@ interface DataType {
       destUrl: "https://www.clicdata.com/wp-content/uploads/2023/04/google-sheets-logo.jpg",
       status: 'Runing',
       frequency: 'Schedule',
-
-      tags: ['dev'],
     },
     {
       key: '3',
-      name: 'Sync Product EKYC Data',
+      name: 'Clean Data from MySQL',
       source: 'MySQL',
       executor: 'Cloud Run',
       srcUrl:"https://connectors.airbyte.com/files/metadata/airbyte/source-mysql/latest/icon.svg",
@@ -118,7 +97,6 @@ interface DataType {
       destUrl: "https://assets-global.website-files.com/5f8b0a1abe69652278dad51c/60ad30603ce79d2498f80739_google%20bigquery%20logo.png",
       frequency: 'Manual',
       status: 'Runing',
-      tags: ['prod', 'ekyc'],
     },
   ];
 
