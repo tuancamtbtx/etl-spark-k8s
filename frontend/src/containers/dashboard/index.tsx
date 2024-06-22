@@ -7,7 +7,7 @@ import { Card, Col, Row, Statistic } from 'antd';
 import Clearfix from '@/components/element/clearfix';
 import CustomStatistic from '@/components/chart/statistic';
 import ReactFrappeChart from "react-frappe-charts";
-
+import HeapMapChart from '@/components/chart/heapmap';
 const etlJobsData = [
   { date: '2024-06-01', jobs: 5 },
   { date: '2024-06-02', jobs: 6 },
@@ -127,6 +127,7 @@ const Dashboard: React.FC = () => {
           <Col span={6}>
               <PieChart data={dataCloud} title="Cloud" />
           </Col> */}
+          <HeapMapChart/>
         </Row>
       </Card>
     </>
