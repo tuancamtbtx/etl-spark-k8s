@@ -10,4 +10,17 @@ public class SparkPipelineSpec {
 
     @JsonProperty("spec")
     public SparkJobSpec spec;
+
+    public boolean isValid() {
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "SparkJob{" +
+                "apiVersion='" + apiVersion + '\'' +
+                ", kind='" + kind + '\'' +
+                ", spec=" + spec +
+                '}';
+    }
 }

@@ -27,4 +27,22 @@ public class SparkJobSpec implements Serializable {
 
     @JsonProperty("steps")
     public List<StepSpec> steps;
+
+    public boolean isValid() {
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "SparkJobConfig{" +
+                "jobName='" + jobName + '\'' +
+                ", master='" + master + '\'' +
+                ", appName='" + appName + '\'' +
+                ", javaClass='" + javaClass + '\'' +
+                ", dependencies=" + dependencies +
+                ", configurations=" + configurations +
+                ", steps=" + steps +
+                '}';
+    }
+
 }

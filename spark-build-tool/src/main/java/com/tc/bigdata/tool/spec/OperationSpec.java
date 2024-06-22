@@ -20,4 +20,19 @@ public class OperationSpec implements Serializable {
 
     @JsonProperty("expression")
     public String expression;
+
+    public boolean isValid() {
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "SparkJobOperation{" +
+                "operation='" + operation + '\'' +
+                ", condition='" + condition + '\'' +
+                ", columns=" + columns +
+                ", column='" + column + '\'' +
+                ", expression='" + expression + '\'' +
+                '}';
+    }
 }

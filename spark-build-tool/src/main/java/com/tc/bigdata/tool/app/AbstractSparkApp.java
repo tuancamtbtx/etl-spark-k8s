@@ -2,8 +2,11 @@ package com.tc.bigdata.tool.app;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
+import com.google.inject.Guice;
+import com.google.inject.Injector;
 import com.tc.bigdata.tool.pipeline.ISparkPipeline;
-import com.tc.bigdata.tool.pipeline.SparkFactory;
+import com.tc.bigdata.tool.pipeline.PipelineModule;
+import com.tc.bigdata.tool.pipeline.SparkPipelineFactory;
 import com.tc.bigdata.tool.spec.SparkPipelineSpec;
 import com.tc.bigdata.tool.utils.FileUtils;
 
@@ -24,8 +27,9 @@ public abstract class AbstractSparkApp {
 
     void run() {
         SparkPipelineSpec sparkPipelineSpec = this.loadConfigOrDie();
-        ISparkPipeline sparkPipeline = SparkFactory.getSparkPipeline(sparkPipelineSpec.kind);
-        assert sparkPipeline.validation(sparkPipelineSpec) : "";
+        Guice.createInjector(new PipelineModule());
+        String kindJob = sparkPipelineSpec.kind;
+        ISparkPipeline sparkPipeline = SparkPipelineFactory.getBank(kindJob);
         sparkPipeline.run(sparkPipelineSpec);
     }
 }

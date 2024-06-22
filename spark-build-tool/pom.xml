@@ -40,6 +40,12 @@
         <version.spark>3.5.1</version.spark>
     </properties>
     <dependencies>
+        <!-- https://mvnrepository.com/artifact/com.google.inject/guice -->
+        <dependency>
+            <groupId>com.google.inject</groupId>
+            <artifactId>guice</artifactId>
+            <version>7.0.0</version>
+        </dependency>
         <!-- https://mvnrepository.com/artifact/org.apache.spark/spark-core -->
         <dependency>
             <groupId>org.apache.spark</groupId>
@@ -160,6 +166,20 @@
                         </goals>
                     </execution>
                 </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.4.2</version>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <addClasspath>true</addClasspath>
+                            <classpathPrefix>lib/</classpathPrefix>
+                            <mainClass>com.tc.bigdata.tool.app.Processor</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
             </plugin>
         </plugins>
         <sourceDirectory>src/main/java</sourceDirectory>

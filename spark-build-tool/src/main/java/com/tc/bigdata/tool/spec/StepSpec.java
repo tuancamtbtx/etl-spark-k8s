@@ -21,4 +21,19 @@ public class StepSpec {
     @JsonProperty("operations")
     public List<OperationSpec> operations;
 
+    public boolean isValid() {
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "DataSourceConfig{" +
+                "name='" + name + '\'' +
+                ", type='" + type + '\'' +
+                ", format='" + format + '\'' +
+                ", options=" + options +
+                ", operations=" + operations +
+                '}';
+    }
+
 }

@@ -14,12 +14,14 @@ spec:
     spark.executor.cores: "2"
   steps:
     - name: "Ingest"
-      type: "read"
+      type: "source"
       format: "csv"
       options:
-        path: "path/to/input/data.csv"
+        path: "/Users/tuan.nguyen3/Documents/Personal-Projects/spark-all-in-one/spark-build-tool/example/input.csv"
         header: "true"
         inferSchema: "true"
+        delimiter: ","
+        encoding: "UTF-8"
     - name: "Transform"
       type: "transformation"
       operations:
