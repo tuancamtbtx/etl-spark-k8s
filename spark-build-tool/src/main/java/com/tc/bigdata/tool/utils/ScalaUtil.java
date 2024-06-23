@@ -9,4 +9,5 @@ import java.util.List;
 public class ScalaUtil {
     public static Seq<Column> convertListColumnToSeqColumn(List<Column> inputList) {
         return JavaConverters.asScalaIteratorConverter(inputList.iterator()).asScala().toSeq();
-    }}
+    }
+}

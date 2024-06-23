@@ -1,5 +1,5 @@
 # stage build
-FROM maven:3.6.0-jdk-11-slim AS build
+FROM maven:3.6.3-jdk-11-slim AS build
 WORKDIR /build
 
 # ARG GITHUB_USERNAME

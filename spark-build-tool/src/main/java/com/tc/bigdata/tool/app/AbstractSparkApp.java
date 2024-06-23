@@ -3,7 +3,6 @@ package com.tc.bigdata.tool.app;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 import com.google.inject.Guice;
-import com.google.inject.Injector;
 import com.tc.bigdata.tool.pipeline.ISparkPipeline;
 import com.tc.bigdata.tool.pipeline.PipelineModule;
 import com.tc.bigdata.tool.pipeline.SparkPipelineFactory;

@@ -1,6 +1,5 @@
 package com.tc.bigdata.tool.processor.transform;
 
-import com.tc.bigdata.tool.app.Processor;
 import com.tc.bigdata.tool.spec.OperationSpec;
 import com.tc.bigdata.tool.spec.StepSpec;
 import com.tc.bigdata.tool.utils.SparkOperationUtil;

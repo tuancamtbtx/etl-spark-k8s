@@ -7,6 +7,9 @@ spec:
   type: Java
   mode: cluster
   image: "ghcr.io/tuancamtbtx/spark-build-tool:main"
+  env:
+    - name: SPARK_JOB_CONF_PATH
+      value: "path_conf"
   imagePullPolicy: Always
   mainClass: com.tc.bigdata.tool.app.Processor
   mainApplicationFile: "local:///opt/spark/spark-build-tool.jar"

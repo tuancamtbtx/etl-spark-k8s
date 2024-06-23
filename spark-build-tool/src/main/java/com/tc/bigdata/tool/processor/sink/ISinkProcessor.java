@@ -5,5 +5,5 @@ import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.Row;
 
 public interface ISinkProcessor {
-   void sink(StepSpec spec, Dataset<Row> ds);
+    void sink(StepSpec spec, Dataset<Row> ds);
 }

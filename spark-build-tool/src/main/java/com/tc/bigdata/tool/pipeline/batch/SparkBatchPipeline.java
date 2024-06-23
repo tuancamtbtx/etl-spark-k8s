@@ -55,9 +55,11 @@ public class SparkBatchPipeline implements ISparkPipeline {
     public StepSpec getSourceSpec(SparkJobSpec spec) {
         return spec.steps.stream().filter(e -> SOURCE_SPEC.equals(e.type)).collect(Collectors.toList()).get(0);
     }
+
     public StepSpec getSinkSpec(SparkJobSpec spec) {
         return spec.steps.stream().filter(e -> SINK_SPEC.equals(e.type)).collect(Collectors.toList()).get(0);
     }
+
     public StepSpec getTransformSpec(SparkJobSpec spec) {
         return spec.steps.stream().filter(e -> TRANSFORM_SPEC.equals(e.type)).collect(Collectors.toList()).get(0);
     }
