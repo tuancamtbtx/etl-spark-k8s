@@ -29,7 +29,7 @@ public abstract class AbstractSparkApp {
         SparkPipelineSpec sparkPipelineSpec = this.loadConfigOrDie();
         Guice.createInjector(new PipelineModule());
         String kindJob = sparkPipelineSpec.kind;
-        ISparkPipeline sparkPipeline = SparkPipelineFactory.getBank(kindJob);
+        ISparkPipeline sparkPipeline = SparkPipelineFactory.getPipeline(kindJob);
         sparkPipeline.run(sparkPipelineSpec);
     }
 }

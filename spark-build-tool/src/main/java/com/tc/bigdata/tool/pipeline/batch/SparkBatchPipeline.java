@@ -20,7 +20,7 @@ import java.util.stream.Collectors;
 public class SparkBatchPipeline implements ISparkPipeline {
     private static final String SOURCE_SPEC = "source";
     private static final String TRANSFORM_SPEC = "transformation";
-    private static final String SINK_SPEC = "sink";
+    private static final String SINK_SPEC = "write";
 
     private static final Logger log = LoggerFactory.getLogger(SparkBatchPipeline.class);
     @Inject
@@ -29,10 +29,6 @@ public class SparkBatchPipeline implements ISparkPipeline {
     private ISourceProcessor sourceProcessor;
     @Inject
     private ITransformProcessor transformProcessor;
-
-    public SparkBatchPipeline(
-    ) {
-    }
 
     @Override
     public SparkSession getSparkSession(SparkPipelineSpec sparkPipelineSpec) {
@@ -59,6 +55,12 @@ public class SparkBatchPipeline implements ISparkPipeline {
     public StepSpec getSourceSpec(SparkJobSpec spec) {
         return spec.steps.stream().filter(e -> SOURCE_SPEC.equals(e.type)).collect(Collectors.toList()).get(0);
     }
+    public StepSpec getSinkSpec(SparkJobSpec spec) {
+        return spec.steps.stream().filter(e -> SINK_SPEC.equals(e.type)).collect(Collectors.toList()).get(0);
+    }
+    public StepSpec getTransformSpec(SparkJobSpec spec) {
+        return spec.steps.stream().filter(e -> TRANSFORM_SPEC.equals(e.type)).collect(Collectors.toList()).get(0);
+    }
 
     @Override
     public void run(SparkPipelineSpec spec) {
@@ -66,8 +68,16 @@ public class SparkBatchPipeline implements ISparkPipeline {
         SparkSession spark = this.getSparkSession(spec);
         SparkJobSpec sparkJobSpec = spec.spec;
         StepSpec sourceSpec = this.getSourceSpec(sparkJobSpec);
+        log.info("Source Spec: {}", sourceSpec);
+        StepSpec transformSpec = this.getTransformSpec(sparkJobSpec);
+        log.info("Transform Spec: {}", transformSpec);
+        StepSpec sinkSpec = this.getSinkSpec(sparkJobSpec);
+        log.info("Sink Spec: {}", sinkSpec);
         Dataset<Row> sourceDs = sourceProcessor.load(spark, sourceSpec);
         sourceDs.show();
+        Dataset<Row> transformedDs = transformProcessor.action(transformSpec, sourceDs);
+        transformedDs.show();
+        sinkProcessor.sink(sinkSpec, transformedDs);
         spark.stop();
     }
 }

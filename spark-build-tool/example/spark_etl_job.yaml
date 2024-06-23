@@ -1,7 +1,6 @@
 apiVersion: "v1"
 kind: SparkBatchPipeline
 spec:
-
   jobName: "ExampleSparkJob"
   master: "local[*]"
   appName: "Spark Ingest Transform Sink Job"
@@ -26,15 +25,15 @@ spec:
       type: "transformation"
       operations:
         - operation: "filter"
-          condition: "columnA > 10"
+          condition: "age > 40"
         - operation: "select"
-          columns: ["columnA", "columnB", "columnC"]
-        - operation: "withColumn"
-          column: "newColumn"
-          expression: "columnA + columnB"
+          columns: ["name", "age", "address"]
+#        - operation: "withColumn"
+#          column: "newColumn"
+#          expression: "columnA + columnB"
     - name: "Sink"
       type: "write"
       format: "parquet"
       options:
-        path: "path/to/output/data"
+        path: "/Users/tuan.nguyen3/Documents/Personal-Projects/spark-all-in-one/spark-build-tool/example/output"
         mode: "overwrite"

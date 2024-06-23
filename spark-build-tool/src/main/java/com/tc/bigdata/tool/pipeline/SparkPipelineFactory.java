@@ -17,7 +17,7 @@ public class SparkPipelineFactory {
         throw new UnsupportedOperationException();
     }
 
-    public static ISparkPipeline getBank(String jobType) {
+    public static ISparkPipeline getPipeline(String jobType) {
         switch (jobType) {
             case SparkPipelineFactory.BATCH_JOB:
                 return batchPipeline;
