@@ -9,7 +9,7 @@ on:
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: tuancamtbtx/spark-build-tool
+  IMAGE_NAME: tuancamtbtx/spark-gen
 
 jobs:
   build-and-push-image:
