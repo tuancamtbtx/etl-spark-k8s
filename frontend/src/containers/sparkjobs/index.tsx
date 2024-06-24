@@ -8,6 +8,7 @@ import YamlFile from '@/containers/sparkjobs/yaml'
 import RemoveSparkJob from '@/containers/sparkjobs/delelte'
 import {HeaderWrapper,ContentWrapper} from '@/components/wrapper'
 import CreateSparkJob from '@/containers/sparkjobs/create'
+import DataLineage from '@/containers/sparkjobs/data-lineage'
 interface DataType {
     key: string;
     name: string;
@@ -56,6 +57,8 @@ interface DataType {
           <YamlFile/>
           <Divider type="vertical"/>
           <Backfill></Backfill>
+          <Divider type="vertical"/>
+          <DataLineage/>
           <Divider type="vertical"/>
           <RemoveSparkJob />
         </Space>
