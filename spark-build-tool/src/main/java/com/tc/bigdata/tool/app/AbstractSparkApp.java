@@ -13,6 +13,13 @@ import java.io.File;
 import java.io.IOException;
 
 public abstract class AbstractSparkApp {
+    /**
+     * Loads the Spark pipeline configuration from a YAML file and returns a SparkPipelineSpec object.
+     * If the configuration file cannot be read, the method will throw a RuntimeException.
+     *
+     * @return A SparkPipelineSpec object containing the configuration details.
+     * @throws RuntimeException if the configuration file cannot be read or if the config path is empty.
+     */
     public SparkPipelineSpec loadConfigOrDie() {
         String path = FileUtils.getConfigPipelinePath();
         assert path != null : "config path is empty, please set it";
@@ -24,6 +31,16 @@ public abstract class AbstractSparkApp {
         }
     }
 
+    /**
+     * Executes the Spark pipeline based on the configuration loaded from a YAML file.
+     * <p>
+     * This method performs the following steps:
+     * 1. Loads the Spark pipeline configuration using the `loadConfigOrDie` method.
+     * 2. Initializes the dependency injection framework using Guice.
+     * 3. Determines the type of job (batch or streaming) from the configuration.
+     * 4. Retrieves the appropriate Spark pipeline using the SparkPipelineFactory.
+     * 5. Runs the retrieved Spark pipeline using the loaded configuration.
+     */
     void run() {
         SparkPipelineSpec sparkPipelineSpec = this.loadConfigOrDie();
         Guice.createInjector(new PipelineModule());

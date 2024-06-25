@@ -12,6 +12,15 @@ import java.util.Map;
 public class SparkSinkProcessor implements ISinkProcessor {
     private static final Logger log = LoggerFactory.getLogger(SparkSinkProcessor.class);
 
+    /**
+     * Saves a dataset to an external data sink using the provided step specifications.
+     *
+     * @param spec The StepSpec object containing the format and options for saving the data.
+     *             - `spec.format` specifies the format of the data sink (e.g., "csv", "json").
+     *             - `spec.options` is a map of options where keys are option names and values are option values.
+     *             The "path" option is mandatory and specifies the destination location for the data.
+     * @param ds   The Dataset<Row> that needs to be saved.
+     */
     @Override
     public void sink(StepSpec spec, Dataset<Row> ds) {
         log.info("sink dataset to {} - options: {}", spec.format, spec.options);

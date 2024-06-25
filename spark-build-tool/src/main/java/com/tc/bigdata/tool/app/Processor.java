@@ -11,6 +11,13 @@ public class Processor extends AbstractSparkApp {
         process();
     }
 
+    /**
+     * Static method to initiate and run the processing logic using the Processor class.
+     * <p>
+     * This method performs the following steps:
+     * 1. Creates an instance of the Processor class.
+     * 2. Calls the `run` method on the Processor instance to execute the processing logic.
+     */
     public static void process() {
         Processor processor = new Processor();
         processor.run();

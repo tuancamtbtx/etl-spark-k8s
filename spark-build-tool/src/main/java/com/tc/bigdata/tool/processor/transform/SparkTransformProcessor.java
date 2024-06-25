@@ -15,7 +15,8 @@ public class SparkTransformProcessor implements ITransformProcessor {
     public Dataset<Row> action(StepSpec spec, Dataset<Row> ds) {
         for (OperationSpec operation : spec.operations) {
             log.info("operation: {}", operation);
-            switch (operation.operation) {
+            String operationName = operation.operation;
+            switch (operationName) {
                 case "filter":
                     ds = SparkOperationUtil.filter(ds, operation.condition);
                     break;

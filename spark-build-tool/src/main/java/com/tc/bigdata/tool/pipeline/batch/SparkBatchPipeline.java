@@ -30,6 +30,16 @@ public class SparkBatchPipeline implements ISparkPipeline {
     @Inject
     private ITransformProcessor transformProcessor;
 
+    /**
+     * Creates and returns a SparkSession based on the provided Spark pipeline specification.
+     *
+     * @param sparkPipelineSpec The SparkPipelineSpec object containing the specifications for the Spark job.
+     *                          - `sparkPipelineSpec.spec` contains the Spark job specifications, including:
+     *                          - `appName`: The name of the Spark application.
+     *                          - `master`: The master URL for the cluster.
+     *                          - `configurations`: Additional configurations for the Spark session.
+     * @return A SparkSession instance configured according to the provided specifications.
+     */
     @Override
     public SparkSession getSparkSession(SparkPipelineSpec sparkPipelineSpec) {
         SparkSession.Builder builder = SparkSession.builder();
@@ -63,8 +73,23 @@ public class SparkBatchPipeline implements ISparkPipeline {
     public StepSpec getTransformSpec(SparkJobSpec spec) {
         return spec.steps.stream().filter(e -> TRANSFORM_SPEC.equals(e.type)).collect(Collectors.toList()).get(0);
     }
-
-    @Override
+/**
+ * Executes the Spark job based on the provided Spark pipeline specification.
+ *
+ * This method performs the following steps:
+ * 1. Logs the start of the Spark job with the provided configuration.
+ * 2. Creates a SparkSession using the provided Spark pipeline specification.
+ * 3. Retrieves and logs the source, transform, and sink specifications from the Spark job specification.
+ * 4. Loads the source dataset using the source specification.
+ * 5. Displays the loaded source dataset.
+ * 6. Applies the transformation to the source dataset using the transform specification.
+ * 7. Displays the transformed dataset.
+ * 8. Sinks (saves) the transformed dataset using the sink specification.
+ * 9. Stops the SparkSession.
+ *
+ * @param spec The SparkPipelineSpec object containing the specifications for the Spark job.
+ */
+@Override
     public void run(SparkPipelineSpec spec) {
         log.info("spark job run with configuration: {}", spec);
         SparkSession spark = this.getSparkSession(spec);
