@@ -13,6 +13,65 @@
     ```bash
     mvn clean install
     ```
+The Kubernetes Spark Operator is a Kubernetes custom controller that makes it easy to run Apache Spark applications on Kubernetes. Here’s how you can install the Kubernetes Spark Operator on your local Minikube cluster:
+## Install K8S Spark Operator:
+### Prerequisites
+
+1. **Minikube**: Make sure you have a running Minikube cluster.
+2. **kubectl**: Ensure `kubectl` is installed and configured to communicate with your Minikube cluster.
+
+### Step-by-Step Guide
+
+#### 1. Start Minikube (if not already running)
+
+```sh
+minikube start
+```
+
+#### 2. Clone the Spark Operator Repository
+
+First, clone the Spark Operator GitHub repository:
+
+```sh
+git clone https://github.com/GoogleCloudPlatform/spark-on-k8s-operator
+cd spark-on-k8s-operator
+```
+
+#### 3. Create Namespace
+
+Create a namespace for the Spark Operator:
+
+```sh
+kubectl create namespace spark-operator
+```
+
+#### 4. Install the Spark Operator
+
+Use Helm to install the Spark Operator. If you don't have Helm installed, you can install it by following the instructions on the [Helm website](https://helm.sh/docs/intro/install/).
+
+Add the Helm repository for the Spark Operator:
+
+```sh
+helm repo add spark-operator https://kubeflow.github.io/spark-operator
+helm repo update
+```
+
+Install the Spark Operator using Helm:
+
+```sh
+helm install spark-operator spark-operator/spark-operator --namespace spark-operator --create-namespace
+```
+
+This will deploy the Spark Operator in the `spark-operator` namespace.
+
+#### 5. Verify Installation
+
+Check if the Spark Operator is running:
+
+```sh
+kubectl get pods -n spark-operator
+```
+
 ## Configuration
 Configuration for the Spark pipeline is loaded from a YAML file. Ensure you have a `spark-pipeline-config.yaml` file in the resources directory with the appropriate settings.
 **Spark Job Pipeline Config**

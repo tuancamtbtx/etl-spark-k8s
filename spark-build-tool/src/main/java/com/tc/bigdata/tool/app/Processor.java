@@ -8,7 +8,7 @@ public class Processor extends AbstractSparkApp {
 
     public static void main(String[] args) {
         log.info("Spark Build Tool!");
-        process();
+//        process();
     }
 
     /**
