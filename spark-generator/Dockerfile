@@ -15,5 +15,5 @@ ENV SPARK_HOME /opt/spark
 WORKDIR /opt/spark/
 
 # copy /py files 
-COPY --chmod=777 --from=build build/target/spark-build-tool-1.0.0-jar-with-dependencies.jar java/
+COPY --chmod=777 --from=build build/target/spark-generator-1.0.0-jar-with-dependencies.jar java/
 
