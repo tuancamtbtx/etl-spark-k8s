@@ -1,4 +1,4 @@
-name: spark-generator-docker
+name: spark-generator-dockerhub
 on:
   push:
     branches: [ main ]
