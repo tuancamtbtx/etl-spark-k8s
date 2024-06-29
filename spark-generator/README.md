@@ -1,6 +1,7 @@
-# Spark Build Tool
-## Getting Started
+# Spark Generator
 
+
+## Getting Started
 ### Using Maven
 
 1. **Clone the repository:**
