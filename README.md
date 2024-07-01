@@ -13,23 +13,31 @@ This is a project to manage ETL Jobs with Spark include:
 ![Github issues](https://img.shields.io/github/issues/tuancamtbtx/etl-spark-k8s)
 ![Github last-commit](https://img.shields.io/github/last-commit/tuancamtbtx/etl-spark-k8s)
 
+## Backend
+TODO
+
 ## FrontEnd
 ### View List Spark Job
 
 <div align="center">
-    <img align="center" src="assets/spark-job.png" alt="drawing" width="1000"/>
+    <img align="center" src="assets/spark-job.png" alt="drawing" width="600"/>
 </div>
 
 ### Backfill Spark Job
 
 <div align="center">
-    <img align="center" src="assets/spark-backfill.png" alt="drawing" width="1000"/>
+    <img align="center" src="assets/spark-backfill.png" alt="drawing" width="600"/>
+</div>
+
+### Data Lineage Visualize
+<div align="center">
+    <img align="center" src="assets/data-lineage.png" alt="drawing" width="600"/>
 </div>
 
 ### Submit Spark Job
 
 <div align="center">
-    <img align="center" src="assets/spark-tool-job.png" alt="drawing" width="1000"/>
+    <img align="center" src="assets/spark-tool-job.png" alt="drawing" width="600"/>
 </div>
 
 # Spark Generator
