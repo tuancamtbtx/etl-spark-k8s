@@ -129,13 +129,13 @@ metadata:
 spec:
   type: Java
   mode: cluster
-  image: "ghcr.io/tuancamtbtx/spark-build-tool:main"
+  image: "vantuan12345/spark-generator:main"
   env:
     - name: SPARK_JOB_CONF_PATH
       value: "your_spark_pipeline_job_path_conf"
   imagePullPolicy: Always
   mainClass: com.tc.bigdata.tool.app.Processor
-  mainApplicationFile: "local:///opt/spark/spark-build-tool.jar"
+  mainApplicationFile: "local:///opt/spark/spark-generator.jar"
   sparkVersion: "3.5.1"
   sparkUIOptions:
     serviceLabels:

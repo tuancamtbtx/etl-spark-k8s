@@ -49,7 +49,7 @@ metadata:
 spec:
   type: Scala
   mode: cluster
-  image: "vantuan12345/spark_python:main"
+  image: "vantuan12345/spark_generator:main"
   imagePullPolicy: Always
   mainApplicationFile: "local:///opt/spark/py_job.py"
   sparkVersion: "3.1.1"
