@@ -17,7 +17,7 @@ ENV PATH /opt/node_modules/.bin:$PATH
 
 # copy in our source code last, as it changes the most
 WORKDIR /opt/app
-COPY . /opt/appac
+COPY . /opt/app
 RUN npm run build
 
 # if you want to use npm start instead, then use `docker run --init in production`
