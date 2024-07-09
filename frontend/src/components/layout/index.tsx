@@ -1,3 +1,5 @@
+/* eslint-disable react/display-name */
+
 'use client'
 import Head from 'next/head'
 import { LayoutWrapper, ContentWrapper, LogoWrapper } from '@/components/wrapper'

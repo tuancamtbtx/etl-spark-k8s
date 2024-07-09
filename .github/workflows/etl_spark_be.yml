@@ -1,4 +1,4 @@
-name: etl-spark-frontend-dockerhub
+name: etl-spark-backend-dockerhub
 on:
   push:
     branches: [ main ]
@@ -28,7 +28,7 @@ jobs:
             ${{ runner.os }}-buildx-
       - name: Move spark tool code to Root
         run: |
-            mv frontend/* .
+            mv backend/* .
       - name: Build and Push Docker Image
         uses: docker/build-push-action@v2
         id: docker_build
@@ -37,7 +37,7 @@ jobs:
           file: ./Dockerfile
           builder: ${{ steps.buildx.outputs.name }}
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/spark-frontend-etl:v1.0.0
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/spark-backend-etl:v1.0.0
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache
 

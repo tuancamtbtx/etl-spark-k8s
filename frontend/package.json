@@ -19,6 +19,7 @@
     "antd": "^5.17.3",
     "apexcharts": "^3.49.1",
     "frappe-charts": "^1.6.2",
+    "moment": "^2.30.1",
     "next": "14.2.3",
     "react": "^18",
     "react-apexcharts": "^1.4.1",
