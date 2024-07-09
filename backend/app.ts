@@ -1,7 +1,7 @@
 import express, { Application } from "express";
 import sequelize from "@src/sequelize";
 
-import CustomerRouter from "@src/routes/CustomerRouter";
+import SparkJobRouter from "@src/routes/sparkjob.router";
 import logger from "@src/utils/logger";
 import { errorHandler } from "@src/middlewares/ErrorMiddleware";
 
@@ -21,7 +21,7 @@ async function initialize() {
 initialize().then(() => {
   console.log("Initialized Sequelize");
 });
-app.use("/api/customers", CustomerRouter);
+app.use("/api/customers", SparkJobRouter);
 app.use(errorHandler);
 const PORT = 3000;
 
