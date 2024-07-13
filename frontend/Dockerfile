@@ -25,7 +25,7 @@ RUN npm run build
 RUN npm prune --production
 
 # Archive
-FROM node:12.8-alpine as archive-target
+FROM node:20.0-alpine as archive-target
 ENV NODE_ENV=production
 ENV PATH $PATH:/usr/src/app/node_modules/.bin
 
