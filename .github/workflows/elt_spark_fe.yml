@@ -34,7 +34,6 @@ jobs:
         id: docker_build
         with:
           context: ./frontend
-          file: Dockerfile
           builder: ${{ steps.buildx.outputs.name }}
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/spark-frontend-etl:v1.0.0
