@@ -1,27 +1,38 @@
-# if you're doing anything beyond your local machine, please pin this to a specific version at https://hub.docker.com/_/node/
-FROM node:20
+# Test
+FROM node:20.0-alpine as test-target
+ENV NODE_ENV=development
+ENV PATH $PATH:/usr/src/app/node_modules/.bin
 
-RUN mkdir -p /opt/app
+WORKDIR /usr/src/app
 
-ARG NODE_ENV=production
-ENV NODE_ENV $NODE_ENV
+COPY package*.json ./
 
-# install dependencies first, in a different location for easier app bind mounting for local development
-WORKDIR /opt
-COPY package.json package-lock.json* *.lock ./
-RUN yarn install
-ENV PATH /opt/node_modules/.bin:$PATH
+# CI and release builds should use npm ci to fully respect the lockfile.
+# Local development may use npm install for opportunistic package updates.
+ARG npm_install_command=ci
+RUN npm $npm_install_command
 
+COPY . .
 
-# copy in our source code last, as it changes the most
-WORKDIR /opt/app
-COPY . /opt/app
-RUN yarn run build
+# Build
+FROM test-target as build-target
+ENV NODE_ENV=production
 
-# if you want to use npm start instead, then use `docker run --init in production`
-# so that signals are passed properly. Note the code in index.js is needed to catch Docker signals
-# using node here is still more graceful stopping then npm with --init afaik
+# Use build tools, installed as development packages, to produce a release build.
+RUN npm run build
 
-EXPOSE 3000
-CMD [ "npm", "start"]
+# Reduce installed packages to production-only.
+RUN npm prune --production
 
+# Archive
+FROM node:12.8-alpine as archive-target
+ENV NODE_ENV=production
+ENV PATH $PATH:/usr/src/app/node_modules/.bin
+
+WORKDIR /usr/src/app
+
+# Include only the release build and production packages.
+COPY --from=build-target /usr/src/app/node_modules node_modules
+COPY --from=build-target /usr/src/app/.next .next
+
+CMD ["next", "start"]
