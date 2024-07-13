@@ -28,9 +28,6 @@ spec:
           condition: "age > 40"
         - operation: "select"
           columns: ["name", "age", "address"]
-#        - operation: "withColumn"
-#          column: "newColumn"
-#          expression: "columnA + columnB"
     - name: "Sink"
       type: "write"
       format: "parquet"
