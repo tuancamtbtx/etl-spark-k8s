@@ -9,10 +9,16 @@ COPY pom.xml /build
  # build java with maven
 RUN mvn -f /build/pom.xml  clean package
 
-FROM spark:3.5.1
-ENV SPARK_HOME /opt/spark
+ENV SPARK_VERSION=3.5.1
+ENV SPARK_MAJOR_VERSION=3.5
+ENV ICEBERG_VERSION=1.5.2
+
+FROM spark:${SPARK_VERSION}
+ENV SPARK_HOME=${SPARK_HOME:-"/opt/spark"}
 
 WORKDIR /opt/spark/
+
+COPY ./conf/spark-defaults.conf /opt/spark/conf
 
 # copy /py files 
 COPY --chmod=777 --from=build build/target/spark-generator-1.0.0-jar-with-dependencies.jar java/
