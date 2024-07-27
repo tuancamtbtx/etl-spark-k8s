@@ -13,13 +13,18 @@ ENV SPARK_VERSION=3.5.1
 ENV SPARK_MAJOR_VERSION=3.5
 ENV ICEBERG_VERSION=1.5.2
 
-FROM spark:${SPARK_VERSION}
+FROM apache/spark:3.5.1-scala2.12-java11-python3-r-ubuntu as  spark
+
 ENV SPARK_HOME=${SPARK_HOME:-"/opt/spark"}
 
-WORKDIR /opt/spark/
+WORKDIR ${SPARK_HOME}
 
 COPY ./conf/spark-defaults.conf /opt/spark/conf
 
 # copy /py files 
 COPY --chmod=777 --from=build build/target/spark-generator-1.0.0-jar-with-dependencies.jar java/
+
+ENV TINI_VERSION v0.19.0
+ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini-static /usr/bin/tini
+RUN chmod +x /usr/bin/tini
 
