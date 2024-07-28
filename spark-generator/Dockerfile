@@ -13,7 +13,7 @@ ENV SPARK_VERSION=3.5.1
 ENV SPARK_MAJOR_VERSION=3.5
 ENV ICEBERG_VERSION=1.5.2
 
-FROM apache/spark:${SPARK_VERSION} as  spark
+FROM apache/spark:3.5.1 as  spark
 
 ENV SPARK_HOME=${SPARK_HOME:-"/opt/spark"}
 
