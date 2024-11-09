@@ -16,7 +16,7 @@ ENV ICEBERG_VERSION=1.5.2
 FROM apache/spark:3.5.1 as  spark
 
 ENV SPARK_HOME=${SPARK_HOME:-"/opt/spark"}
-
+USER root
 WORKDIR ${SPARK_HOME}
 
 COPY ./conf/spark-defaults.conf /opt/spark/conf
@@ -28,3 +28,4 @@ ENV TINI_VERSION v0.19.0
 ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini-static /usr/bin/tini
 RUN chmod +x /usr/bin/tini
 
+ENTRYPOINT ["/tini", "--"]
